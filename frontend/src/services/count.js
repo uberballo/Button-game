@@ -1,10 +1,22 @@
-import axios from "axios";
-const baseUrl = "/api/count";
+import axios from 'axios';
+const baseUrl = '/api/count';
 
 const getCount = async () => {
-  const request = await axios.get(baseUrl);
-  console.log(request.data);
-  return request.then(response => response.data);
+  try {
+    const res = await axios.get(baseUrl);
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
-export default { getCount };
+const increment = async () => {
+  try {
+    const res = await axios.put(baseUrl);
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export default { getCount, increment };
