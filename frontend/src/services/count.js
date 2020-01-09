@@ -1,5 +1,5 @@
-import axios from 'axios';
-const baseUrl = '/api/count';
+import axios from "axios";
+const baseUrl = "/api/count";
 
 const getCount = async () => {
   try {
@@ -10,9 +10,9 @@ const getCount = async () => {
   }
 };
 
-const increment = async () => {
+const increment = async userId => {
   try {
-    const res = await axios.put(baseUrl);
+    const res = await axios.put(baseUrl, { id: userId });
     return res.data;
   } catch (e) {
     console.log(e);
