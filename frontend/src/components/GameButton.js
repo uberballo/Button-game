@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-const GameButton = ({ count, handlePress }) => {
-  return <button onClick={handlePress}>{count}</button>;
+const GameButton = ({ handlePress }) => {
+  return <button onClick={handlePress}>press</button>;
 };
 
 export default GameButton;

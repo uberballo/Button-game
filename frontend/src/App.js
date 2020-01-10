@@ -3,6 +3,8 @@ import GameButton from "./components/GameButton";
 import LoginForm from "./components/LoginForm";
 import countService from "./services/count";
 import userService from "./services/users";
+import GameView from "./components/GameView";
+import LoginView from "./components/LoginView";
 
 const useField = type => {
   const [value, setValue] = useState("");
@@ -10,7 +12,6 @@ const useField = type => {
   const onChange = event => {
     setValue(event.target.value);
   };
-
   return {
     type,
     value,
@@ -21,19 +22,26 @@ const useField = type => {
 function App() {
   const username = useField("text");
   const [count, setCount] = useState(0);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
 
   useEffect(() => {
     async function fetchData() {
-      const haettuCount = await countService.getCount();
-      setCount(haettuCount);
+      const currentCount = await countService.getCount();
+      setCount(currentCount);
     }
     fetchData();
   }, []);
 
-  const handlePress = async () => {
-    const haettuCount = await countService.increment(user.id);
-    setCount(haettuCount);
+  const handlePress = async event => {
+    const countChange = await countService.increment(user.id);
+    console.log(countChange);
+    if (countChange.error) {
+      console.log("nyt loppu");
+      const newUser = await userService.resetPoints(user.id);
+      setUser(newUser);
+    } else {
+      setUser({ ...user, points: user.points + countChange });
+    }
   };
 
   const handleLogin = async event => {
@@ -44,15 +52,15 @@ function App() {
 
   if (!user) {
     return (
-      <div className="App">
-        <LoginForm handleSubmit={handleLogin} username={username} />
+      <div className="LoginView">
+        <LoginView handleSubmit={handleLogin} username={username} />
       </div>
     );
   }
 
   return (
-    <div className="App">
-      <GameButton count={count} handlePress={() => handlePress()} />
+    <div className="GameView">
+      <GameView handlePress={handlePress} user={user} />
     </div>
   );
 }
