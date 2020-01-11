@@ -21,7 +21,7 @@ countRouter.get("/", async (request, response) => {
 
 countRouter.put("/", async (request, response) => {
   const user = await User.findById(request.body.id);
-  if (user.points != 1) {
+  if (user.points != 0) {
     const currentCount = await Count.findOne({});
     currentCount.count = currentCount.count + 1;
     const newPoints = calculateNextPoints(currentCount.count) - 1;
@@ -32,7 +32,7 @@ countRouter.put("/", async (request, response) => {
     await user.save();
     response.json(newPoints);
   } else {
-    response.json({ error: "No points" });
+    response.json({ endOfPoints: "No points" });
   }
 });
 

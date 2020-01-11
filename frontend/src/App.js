@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import GameButton from "./components/GameButton";
 import LoginForm from "./components/LoginForm";
 import countService from "./services/count";
-import userService from "./services/users";
 import GameView from "./components/GameView";
 import LoginView from "./components/LoginView";
 
@@ -32,35 +31,17 @@ function App() {
     fetchData();
   }, []);
 
-  const handlePress = async event => {
-    const countChange = await countService.increment(user.id);
-    console.log(countChange);
-    if (countChange.error) {
-      console.log("nyt loppu");
-      const newUser = await userService.resetPoints(user.id);
-      setUser(newUser);
-    } else {
-      setUser({ ...user, points: user.points + countChange });
-    }
-  };
-
-  const handleLogin = async event => {
-    event.preventDefault();
-    const result = await userService.logIn(username.value);
-    setUser(result);
-  };
-
   if (!user) {
     return (
       <div className="LoginView">
-        <LoginView handleSubmit={handleLogin} username={username} />
+        <LoginView username={username} setUser={setUser} />
       </div>
     );
   }
 
   return (
     <div className="GameView">
-      <GameView handlePress={handlePress} user={user} />
+      <GameView user={user} setUser={setUser} />
     </div>
   );
 }
