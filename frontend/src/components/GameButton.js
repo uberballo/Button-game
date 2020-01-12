@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react'
 
 const GameButton = ({ handlePress }) => {
-  return <button onClick={handlePress}>press</button>;
-};
+  return (
+    <button onClick={handlePress} className="game-button">
+      press
+    </button>
+  )
+}
 
-export default GameButton;
+export default GameButton

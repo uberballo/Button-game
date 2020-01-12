@@ -1,49 +1,47 @@
-import React, { useState, useEffect } from "react";
-import GameButton from "./components/GameButton";
-import LoginForm from "./components/LoginForm";
-import countService from "./services/count";
-import GameView from "./components/GameView";
-import LoginView from "./components/LoginView";
+import React, { useState, useEffect } from 'react'
+import GameView from './components/GameView'
+import LoginView from './components/LoginView'
+import Notification from './components/Notification'
+import './App.css'
 
 const useField = type => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('')
 
   const onChange = event => {
-    setValue(event.target.value);
-  };
+    setValue(event.target.value)
+  }
   return {
     type,
     value,
     onChange
-  };
-};
+  }
+}
 
 function App() {
-  const username = useField("text");
-  const [count, setCount] = useState(0);
-  const [user, setUser] = useState();
+  const username = useField('text')
+  const [user, setUser] = useState()
+  const [notification, setNotification] = useState({ message: 'you wont 5 points' })
 
-  useEffect(() => {
-    async function fetchData() {
-      const currentCount = await countService.getCount();
-      setCount(currentCount);
-    }
-    fetchData();
-  }, []);
+  const handleNotification = ({ message, type = 'error' }) => {
+    setNotification({ message, type })
+    setTimeout(() => setNotification({ message: null }), 10000)
+  }
 
   if (!user) {
     return (
-      <div className="LoginView">
-        <LoginView username={username} setUser={setUser} />
+      <div className="login-view-container">
+        <Notification notification={notification} />
+        <LoginView username={username} setUser={setUser} setNotification={handleNotification} />
       </div>
-    );
+    )
   }
 
   return (
-    <div className="GameView">
-      <GameView user={user} setUser={setUser} />
+    <div className="game-view-container">
+      <Notification notification={notification} />
+      <GameView user={user} setUser={setUser} setNotification={handleNotification} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

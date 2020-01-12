@@ -15,24 +15,32 @@ const calculateNextPoints = currentCount => {
 };
 
 countRouter.get("/", async (request, response) => {
-  const currentCount = await Count.findOne({});
-  response.json(currentCount.count);
+  try {
+    const currentCount = await Count.findOne({});
+    response.json(currentCount.count);
+  } catch (exception) {
+    response.json({ error: exception });
+  }
 });
 
 countRouter.put("/", async (request, response) => {
-  const user = await User.findById(request.body.id);
-  if (user.points != 0) {
-    const currentCount = await Count.findOne({});
-    currentCount.count = currentCount.count + 1;
-    const newPoints = calculateNextPoints(currentCount.count) - 1;
+  try {
+    const user = await User.findById(request.body.id);
+    if (user.points != 0) {
+      const currentCount = await Count.findOne({});
+      currentCount.count = currentCount.count + 1;
+      const newPoints = calculateNextPoints(currentCount.count) - 1;
 
-    user.points = user.points + newPoints;
+      user.points = user.points + newPoints;
 
-    await currentCount.save();
-    await user.save();
-    response.json(newPoints);
-  } else {
-    response.json({ endOfPoints: "No points" });
+      await currentCount.save();
+      await user.save();
+      response.json(newPoints);
+    } else {
+      response.json({ endOfPoints: "No points" });
+    }
+  } catch (exception) {
+    response.json({ error: exception });
   }
 });
 
