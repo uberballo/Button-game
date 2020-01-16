@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import GameView from './components/GameView'
 import LoginView from './components/LoginView'
 import Notification from './components/Notification'
+import userService from './services/users'
 import './App.css'
 
 const useField = type => {
@@ -18,9 +19,20 @@ const useField = type => {
 }
 
 function App() {
-  const username = useField('text')
+  const username = useField("text")
   const [user, setUser] = useState()
-  const [notification, setNotification] = useState({ message: 'you wont 5 points' })
+  const [notification, setNotification] = useState({ message: null })
+
+  useEffect(()=>{
+    const getCachedUser= async () =>{
+      const cachedUser = window.localStorage.getItem('user')
+      const fetchedUser = await userService.logIn(cachedUser)
+      if (fetchedUser){
+        setUser(fetchedUser)
+      }
+    }
+    getCachedUser()
+  },[])
 
   const handleNotification = ({ message, type = 'error' }) => {
     setNotification({ message, type })
