@@ -6,7 +6,7 @@ const LoginForm = ({ handleSubmit, username }) => {
       <form onSubmit={handleSubmit}>
         <div>
           Username
-          <input {...username} />
+          <input name='username' {...username} />
         </div>
         <button type='submit'>Start Playing</button>
       </form>
