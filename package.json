@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "watch": "cross-env NODE_ENV=development nodemon index.js"
+    "start": "node backend/",
+    "build": "cd frontend/ && npm install && npm run build",
+    "watch": "cross-env NODE_ENV=development nodemon backend/"
   },
   "keywords": [],
   "author": "",

@@ -24,7 +24,7 @@ const GameView = ({ user, setUser, setNotification }) => {
   }
   return (
     <div className="game-view">
-      <LogOutButton setUser={setUser}/>
+      <LogOutButton setUser={setUser} user={user}/>
       <h1>{user.username}</h1>
       <GameButton user={user} setUser={setUser} setNotification={setNotification}/>
       <p className="user-points">{user.points}</p>

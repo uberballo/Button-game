@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LogOutbutton = ({ setUser }) => {
+const LogOutbutton = ({ setUser}) => {
   const handlePress = () => {
     window.localStorage.removeItem('user')
     setUser(null)

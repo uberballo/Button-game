@@ -20,15 +20,18 @@ const useField = type => {
 
 function App() {
   const username = useField("text")
-  const [user, setUser] = useState()
+  const [user, setUser] = useState('')
   const [notification, setNotification] = useState({ message: null })
 
   useEffect(()=>{
     const getCachedUser= async () =>{
       const cachedUser = window.localStorage.getItem('user')
-      const fetchedUser = await userService.logIn(cachedUser)
-      if (fetchedUser){
+      
+      if (cachedUser){
+        const fetchedUser = await userService.logIn(cachedUser)
         setUser(fetchedUser)
+      }else{
+        setUser(null)
       }
     }
     getCachedUser()
