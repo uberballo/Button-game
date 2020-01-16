@@ -4,8 +4,8 @@ const mockUser = {
     username: "kaapo"
 }
 
-describe('H1 Text', () => {
-  test('h1 loads correctly', async () => {
+describe('login test', () => {
+  test('User is logged in correctly', async () => {
     let browser = await puppeteer.launch({
       headless: false
     })
