@@ -5,6 +5,9 @@ const mockUser = {
 }
 
 describe('login test', () => {
+
+  beforeAll(async () =>{})
+
   test('User is logged in correctly', async () => {
     let browser = await puppeteer.launch({
       headless: false
@@ -22,7 +25,7 @@ describe('login test', () => {
     const text = mockUser.username
 
     await page.goto('http://localhost:3000/')
-    await page.waitForSelector('.login-view-container')
+    await page.waitForSelector('.container')
 
     await page.click("input[name=username]")
     await page.type("input[name=username]",mockUser.username)
