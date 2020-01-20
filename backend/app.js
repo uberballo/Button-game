@@ -12,6 +12,8 @@ const userRouter = require('./controllers/users')
 app.use(cors())
 app.use(bodyParser.json())
 
+app.use('/', express.static('./frontend/build'))
+
 mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true }).catch(error => {
   console.log('error connection to MongoDB:', error.message)
 })
