@@ -19,42 +19,37 @@ const useField = type => {
 }
 
 function App() {
-  const username = useField("text")
+  const username = useField('text')
   const [user, setUser] = useState('')
   const [notification, setNotification] = useState({ message: null })
 
-  useEffect(()=>{
-    const getCachedUser= async () =>{
+  useEffect(() => {
+    const getCachedUser = async () => {
       const cachedUser = window.localStorage.getItem('user')
-      
-      if (cachedUser){
+
+      if (cachedUser) {
         const fetchedUser = await userService.logIn(cachedUser)
         setUser(fetchedUser)
-      }else{
+      } else {
         setUser(null)
       }
     }
     getCachedUser()
-  },[])
+  }, [])
 
   const handleNotification = ({ message, type = 'error' }) => {
     setNotification({ message, type })
-    setTimeout(() => setNotification({ message: null }), 10000)
-  }
-
-  if (!user) {
-    return (
-      <div className="login-view-container">
-        <Notification notification={notification} />
-        <LoginView username={username} setUser={setUser} setNotification={handleNotification} />
-      </div>
-    )
+    setTimeout(() => setNotification({ message: null }), 5000)
   }
 
   return (
-    <div className="game-view-container">
+    <div className="container">
       <Notification notification={notification} />
-      <GameView user={user} setUser={setUser} setNotification={handleNotification} />
+      {user ? (
+        <GameView user={user} setUser={setUser} setNotification={handleNotification} />
+      ) : (
+        <LoginView username={username} setUser={setUser} setNotification={handleNotification} />
+      )}
     </div>
   )
 }

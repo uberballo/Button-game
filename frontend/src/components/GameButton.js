@@ -1,17 +1,17 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import countService from '../services/count'
 
-const GameButton = ({ user, setUser, setNotification}) => {
+const GameButton = ({ user, setUser, setNotification }) => {
   const [buttonState, setButtonState] = useState(false)
 
   const handlePress = async () => {
     setButtonState(true)
     const countChange = await countService.increment(user.id)
-    console.log(isNaN(countChange))
-    if (countChange.error ){
+
+    if (countChange.error) {
       setNotification(countChange.error)
-      return;
-    }else if (countChange > 1) {
+      return
+    } else if (countChange > 1) {
       setNotification({
         message: `You won ${countChange + 1} points!`,
         type: 'won'
