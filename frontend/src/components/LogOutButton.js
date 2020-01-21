@@ -7,8 +7,8 @@ const LogOutbutton = ({ setUser}) => {
   }
 
   return (
-    <div>
-      <button onClick={handlePress}>Log out</button>
+    <div className="log-out-container grid-item">
+      <button className="log-out-button " onClick={handlePress}>Log out</button>
     </div>
   )
 }

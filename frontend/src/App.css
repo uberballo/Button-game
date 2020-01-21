@@ -1,22 +1,53 @@
-.container {
-  position: relative;
-  margin: auto;
-  text-align: center;
-  padding: 70px 0;
-}
-
-.game-view {
-  text-align: center;
-  position: relative;
-  padding: 30px 20px;
-  border: 3px solid;
-  border-radius: 25px;
-  background-color: darkgray;
-}
 
 .notification{
   position: relative;
+  margin: 10px;
   padding: 20px;
-  height: 100px;
+  height: 200px;
   text-align: center;
+}
+.notification-message{
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+}
+.play-view{
+  display: grid;
+    grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-gap:10px;
+  padding: 30px 20px;
+  border: 3px solid;
+  grid-template-areas: 
+  "username  logout"
+  "button button"
+  "user-points user-points";
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px;
+  font-size: 30px;
+}
+
+.log-out-container{
+  grid-area: logout;
+}
+
+.log-out-button{
+  text-align: center;
+}
+
+.username-text{
+  grid-area: username;
+}
+
+.user-points{
+  grid-area: user-points;
+}
+
+.game-button{
+  grid-area: button;
+  background-color: #c7bfbf;
 }

@@ -21,7 +21,7 @@ const GameButton = ({ user, setUser, setNotification }) => {
   }
 
   return (
-    <button onClick={handlePress} className="game-button" disabled={buttonState}>
+    <button onClick={handlePress} className="game-button grid-item" disabled={buttonState}>
       press
     </button>
   )
