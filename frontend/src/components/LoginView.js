@@ -15,7 +15,7 @@ const LoginView = ({ username, setUser, setNotification }) => {
   }
 
   return (
-    <div>
+    <div className="login-container">
       <LoginForm handleSubmit={handleLogin} username={username} />
     </div>
   )

@@ -12,8 +12,8 @@ const LoseView = ({ user, setUser, setNotification }) => {
   }
 
   return (
-    <div>
-      <p className="lose-text">Lost the game</p>
+    <div className="lose-view">
+      <p className="lose-text">You lost the game</p>
       <button onClick={handleReset} className="lose-button">
         play again
       </button>
