@@ -7,7 +7,6 @@ const GameButton = ({ user, setUser, setNotification }) => {
   const handlePress = async () => {
     setButtonState(true)
     const countChange = await countService.increment(user.id)
-
     if (countChange.error) {
       setNotification(countChange.error)
       return

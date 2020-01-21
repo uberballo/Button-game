@@ -4,6 +4,8 @@ import LoginView from './components/LoginView'
 import Notification from './components/Notification'
 import userService from './services/users'
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const useField = type => {
   const [value, setValue] = useState('')
