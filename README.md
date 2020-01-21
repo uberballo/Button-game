@@ -1,4 +1,6 @@
-# Button game
+# Button game  
+
+[heroku](https://vincit-button-game.herokuapp.com/)
 
 A game where you press the button and with luck, you may win some points. Each press costs one point and every 10th, 100th and 500th wins you points. The challenge is that you never know whats the current count, thus you need some luck to win.  
 
