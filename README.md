@@ -21,10 +21,11 @@ Thus you install all the required dependencies and build the project.
 
 ### Create a .env file  
 The project uses MongoDB and requires it to run. Create a .env file add the following:  
-`MONGODB_URI = <link to mongoDB>  
-
-PORT = 3003`  
-The port is optional.  
+```
+MONGODB_URI= <url for mongoDB>
+PORT=3003
+```
+The port is optional.   
 
 ### Start the program  
 You may start the program by typing: 
