@@ -33,6 +33,6 @@ You may start the program by typing:
 and on the terminal you will see where the program is running. In this case it would be `http://localhost:3003`  
 
 ## Testing  
-The tests require chromedriver to run E2E tests. After installing the project, run the tests by typing:  
+The tests require chromedriver to run E2E tests. After installing the project,start the program and run the tests by typing:  
 `npm test`  
 The software uses puppeteer to simulate clicking the page, so for a few seconds it will use chrome.  
